@@ -1,5 +1,4 @@
 from django import template
-import women.views as views
 from women.models import Category
 
 register = template.Library()
