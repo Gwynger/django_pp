@@ -9,6 +9,7 @@ psycopg2 = "*"
 ipython = "*"
 django-extensions = "*"
 python-dotenv = "*"
+django-debug-toolbar = "*"
 
 [dev-packages]
 
