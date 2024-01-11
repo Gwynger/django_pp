@@ -4,10 +4,7 @@
 <h1 xmlns="http://www.w3.org/1999/html">{{title}}</h1>
 <form action="" method="POST">
     {% csrf_token %}
-    <p><label for="id_1">Text: </label><input type="text" id="id_1" name="field_text"></p>
-    <p><label for="id_2">Check: </label><input type="checkbox" id="id_2" name="field_check"></p>
-    <p><label for="id_3">Number: </label><input type="number" id="id_3" name="field_num"></p>
-    <p><label for="id_4">Password: </label><input type="password" id="id_4" name="field_psw"></p>
-    <p><button type="submit">Отправить></button></p>
+    {{ form.as_p }}
+    <p><button type="submit">Send</button></p>
 </form>
 {% endblock %}
