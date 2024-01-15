@@ -8,7 +8,7 @@ class AddPostForm(forms.ModelForm):
 
     class Meta:
         model = Women
-        fields = ['title', 'slug', 'content', 'is_published', 'cat', 'husband', 'tag']
+        fields = ['title', 'slug', 'content', 'photo', 'is_published', 'cat', 'husband', 'tag']
         labels = {
             'slug': 'URL',
             'tag': 'Tags',

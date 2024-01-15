@@ -1,5 +1,8 @@
 from django.contrib import admin, messages
+from django.utils.safestring import mark_safe
+
 from .models import Women, Category
+
 
 # Определение и настройка своего фильтра
 class MarriedFilter(admin.SimpleListFilter):
@@ -21,9 +24,9 @@ class MarriedFilter(admin.SimpleListFilter):
 
 @admin.register(Women)
 class WomenAdmin(admin.ModelAdmin):
-    fields = ['title', 'content', 'slug', 'cat', 'husband']  # exclude - исключает поля из формы
-    readonly_fields = ['slug']  # делает поле нередактируемым
-    list_display = ('id', 'title', 'time_create', 'is_published', 'cat', 'brief_info')
+    fields = ['title', 'content', 'photo', 'post_photo', 'slug', 'cat', 'husband']  # exclude - исключает поля из формы
+    readonly_fields = ['post_photo']  # делает поле нередактируемым
+    list_display = ('id', 'title', 'post_photo', 'time_create', 'is_published', 'cat')
     list_display_links = ('id', 'title')
     ordering = ('time_create', 'title')
     list_editable = ('is_published',)
@@ -31,9 +34,13 @@ class WomenAdmin(admin.ModelAdmin):
     actions = ['set_published', 'set_draft']
     search_fields = ['title']
     list_filter = [MarriedFilter, 'cat__name', 'is_published']
+    save_on_top = True
 
-    def brief_info(self, women: Women):
-        return f'Description {len(women.content)} symbols.'
+    @admin.display(description='Picture', ordering='content')
+    def post_photo(self, women: Women):
+        if women.photo:
+            return mark_safe(f'<img src="{women.photo.url}", width=50>')
+        return 'No photo'
 
     @admin.action(description='Publish selected entries')
     def set_published(self, request, queryset):
