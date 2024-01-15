@@ -10,6 +10,7 @@ ipython = "*"
 django-extensions = "*"
 python-dotenv = "*"
 django-debug-toolbar = "*"
+pillow = "*"
 
 [dev-packages]
 
