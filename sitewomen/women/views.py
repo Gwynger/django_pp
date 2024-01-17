@@ -49,8 +49,13 @@ class ShowPost(DataMixin, DetailView):
 class AddPage(LoginRequiredMixin, DataMixin, CreateView):
     form_class = AddPostForm
     template_name = 'women/addpage.html'
-    title_page = 'Добавление статьи'
+    title_page = 'Add an article'
     login_url = '/admin/'
+
+    def form_valid(self, form):
+        w = form.save(commit=False)
+        w.author = self.request.user
+        return super().form_valid(form)
 
 
 class UpdatePage(DataMixin, UpdateView):
