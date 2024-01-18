@@ -20,7 +20,8 @@
 	<li><a href="{% url m.url_name %}">{{m.title}}</a></li>
 {% endfor %}
 {% if user.is_authenticated %}
-				<li class="last"><a href="{% url 'users:profile' %}">{{ user.username }}</a> | <a href="{% url 'users:logout' %}">Выйти</a></li>
+	{% csrf_token %}
+	<li class="last"><a href="{% url 'users:profile' %}">{{ user.username }}</a> | <a href="#" onclick="logout()">Выйти</a></li>
 {% else %}
 	<li class="last"><a href="{% url 'users:login' %}">Войти</a> | <a href="{% url 'users:register' %}">Регистрация</a></li>
 {% endif %}
@@ -76,5 +77,21 @@
 	</div>
 </td></tr></table>
 <!-- Конец footer'а и страницы -->
+
+<script>
+	function logout() {
+        var form = document.createElement('form');
+        form.method = 'post';
+        form.action = '{% url 'users:logout' %}';
+        var csrf = document.createElement('input');
+        csrf.type = 'hidden';
+        csrf.name = 'csrfmiddlewaretoken';
+        csrf.value = '{{ csrf_token }}';
+        form.appendChild(csrf);
+        document.body.appendChild(form);
+        form.submit();
+    }
+</script>
+
 </body>
 </html>

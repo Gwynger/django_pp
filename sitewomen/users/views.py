@@ -5,11 +5,11 @@ from django.contrib.auth.views import LoginView, PasswordChangeView
 from django.urls import reverse, reverse_lazy
 from django.views.generic import CreateView, UpdateView
 
-from users.forms import RegisterUserForm, ProfileUserForm, UserPasswordChangeForm
+from users.forms import RegisterUserForm, ProfileUserForm, UserPasswordChangeForm, LoginUserForm
 
 
 class LoginUser(LoginView):
-    form_class = AuthenticationForm
+    form_class = LoginUserForm
     template_name = 'users/login.html'
     extra_context = {'title': 'Authorization'}
 
