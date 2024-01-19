@@ -8,7 +8,7 @@
     {% if user.photo %}
     <p><img src="{{ user.photo.url }}">
     {% else %}
-    <p><img src="/media/users/default.jpg">
+    <p><img src="{{ default_image }}">
     {% endif %}
 
     <input type="hidden" name="next" value="{{ next }}" />
