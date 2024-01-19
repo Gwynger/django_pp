@@ -72,14 +72,21 @@ WSGI_APPLICATION = 'sitewomen.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': ENV['POSTGRES_BASE_NAME'],
+#         'USER': ENV['POSTGRES_BASE_USER'],
+#         'PASSWORD': ENV['POSTGRES_BASE_PASSWORD'],
+#         'HOST': ENV['POSTGRES_BASE_HOST'],
+#         'PORT': ENV['POSTGRES_BASE_PORT'],
+#     }
+# }
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': ENV['POSTGRES_BASE_NAME'],
-        'USER': ENV['POSTGRES_BASE_USER'],
-        'PASSWORD': ENV['POSTGRES_BASE_PASSWORD'],
-        'HOST': ENV['POSTGRES_BASE_HOST'],
-        'PORT': ENV['POSTGRES_BASE_PORT'],
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
 
