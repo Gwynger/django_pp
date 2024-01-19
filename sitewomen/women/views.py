@@ -98,7 +98,7 @@ class TagPostList(DataMixin, ListView):
     context_object_name = 'posts'
     allow_empty = False
 
-    def get_context_data(self, *,object_list=None, **kwargs):
+    def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
         tag = TagPost.objects.get(slug=self.kwargs['tag_slug'])
         return self.get_mixin_context(context, title='Tag: ' + tag.tag)
