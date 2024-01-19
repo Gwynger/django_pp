@@ -1,7 +1,6 @@
 from django import forms
 from django.core.exceptions import ValidationError
-
-from .models import Category, Husband, Women
+from .models import Women
 
 
 class AddPostForm(forms.ModelForm):

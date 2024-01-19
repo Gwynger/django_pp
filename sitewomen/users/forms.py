@@ -1,4 +1,4 @@
-from datetime import datetime, date
+from datetime import date
 
 from django import forms
 from django.contrib.auth import get_user_model

@@ -1,15 +1,12 @@
 from django.contrib.auth.decorators import login_required, permission_required
-from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
+from django.contrib.auth.mixins import PermissionRequiredMixin
 from django.core.paginator import Paginator
 from django.http import HttpResponse, HttpResponseNotFound
-from django.shortcuts import render, get_object_or_404, redirect
+from django.shortcuts import render, get_object_or_404
 from django.urls import reverse, reverse_lazy
-from django.views.generic import TemplateView, ListView, DetailView, FormView, CreateView, UpdateView
-
-from .forms import AddPostForm, UploadFileForm
-from .models import Women, Category, TagPost, UploadFiles
-from django.views import View
-
+from django.views.generic import ListView, DetailView, CreateView, UpdateView
+from .forms import AddPostForm
+from .models import Women, TagPost
 from .utils import DataMixin
 
 
@@ -26,7 +23,7 @@ class WomenHome(DataMixin, ListView):
 @login_required
 def about(request):
     contact_list = Women.published.all()
-    paginator = Paginator(contact_list, 3)
+    paginator = Paginator(contact_list, 10)
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
     return render(request, 'women/about.html',
