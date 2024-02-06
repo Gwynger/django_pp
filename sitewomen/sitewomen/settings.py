@@ -1,16 +1,18 @@
+import os
 from pathlib import Path
-from dotenv import dotenv_values
+import environ
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+env = environ.Env()
+environ.Env.read_env(env_file=os.path.join(BASE_DIR, '.env'))
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-ENV = dotenv_values('../.env')
-SECRET_KEY = ENV['DJ_SECRET_KEY']
+SECRET_KEY = env('DJ_SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -151,8 +153,8 @@ EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 
 EMAIL_HOST = 'smtp.yandex.ru'
 EMAIL_PORT = 465
-EMAIL_HOST_USER = ENV['SMTP_USER']
-EMAIL_HOST_PASSWORD = ENV['SMTP_PASSWORD']
+EMAIL_HOST_USER = env('SMTP_USER')
+EMAIL_HOST_PASSWORD = env('SMTP_PASSWORD')
 EMAIL_USE_SSL = True
 
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
