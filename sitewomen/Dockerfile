@@ -5,10 +5,11 @@ WORKDIR /app
 ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONDONUNBUFFERED 1
 
-RUN pip install --upgrade pip
-COPY ./requirements.txt ./
-RUN pip install -r requirements.txt
-COPY .env /app/
 COPY . .
 
-CMD [ "python3", "./sitewomen/manage.py", "runserver", "0.0.0.0:8000"]
+ENV APP_NAME=SITEWOMEN
+
+COPY ./requirements.txt ./
+RUN pip install -r requirements.txt
+
+CMD gunicorn sitewomen.wsgi:application -b 0.0.0.0:8000
