@@ -12,4 +12,4 @@ ENV APP_NAME=SITEWOMEN
 COPY ./requirements.txt ./
 RUN pip install -r requirements.txt
 
-CMD gunicorn sitewomen.wsgi:application -b 0.0.0.0:8000
+CMD ["python3", "manage.py", "runserver", "0.0.0.0:8000"]
