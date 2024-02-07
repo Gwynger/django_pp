@@ -2,10 +2,11 @@
 Проект для тренировки реализации основных функций фреймворка Django. 
 
 ### **Используемые языки, технологии**
-Python3  
-Django 5.0
-SQLite
-Docker  
+
+- Python3
+- Django 5.0
+- SQLite
+- Docker  
 
 Сервис реализован на [Django](https://www.djangoproject.com/), 
 в качестве ORM используется [Django ORM](https://docs.djangoproject.com/en/5.0/topics/db/queries/).
